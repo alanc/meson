@@ -224,6 +224,9 @@ def is_osx():
 def is_linux():
     return platform.system().lower() == 'linux'
 
+def is_solaris():
+    return platform.system().lower() == 'sunos'
+
 def is_windows():
     platname = platform.system().lower()
     return platname == 'windows' or 'mingw' in platname

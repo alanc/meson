@@ -730,7 +730,7 @@ Provides information about the build machine — the machine that is doing the a
 
 - `cpu_family()` returns the CPU family name. Guaranteed to return `x86` for 32-bit userland on x86 CPUs, `x86_64` for 64-bit userland on x86 CPUs, `arm` for 32-bit userland on all ARM CPUs, etc.
 - `cpu()` returns a more specific CPU name, such as `i686`, `amd64`, etc.
-- `system()` returns the operating system name, such as `windows` (all versions of Windows), `linux` (all Linux distros), `darwin` (all versions of OS X/macOS), `cygwin` (for Cygwin), and `bsd` (all *BSD OSes).
+- `system()` returns the operating system name, such as `windows` (all versions of Windows), `linux` (all Linux distros), `darwin` (all versions of OS X/macOS), `cygwin` (for Cygwin), `bsd` (all *BSD OSes), and `solaris` (Solaris and all OpenSolaris/illumos distros).
 - `endian()` returns `big` on big-endian systems and `little` on little-endian systems.
 
 Currently, these values are populated using [`platform.system()`](https://docs.python.org/3.4/library/platform.html#platform.system) and [`platform.machine()`](https://docs.python.org/3.4/library/platform.html#platform.machine). If you think the returned values for any of these are incorrect for your system or CPU, or if your OS is not in the above list, please file [a bug report](https://github.com/mesonbuild/meson/issues/new) with details and we'll look into it.

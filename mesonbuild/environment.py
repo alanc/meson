@@ -316,7 +316,7 @@ class Environment:
         self.default_objc = ['cc']
         self.default_objcpp = ['c++']
         self.default_fortran = ['gfortran', 'g95', 'f95', 'f90', 'f77', 'ifort']
-        self.default_static_linker = ['ar']
+        self.default_static_linker = ['ar', 'gar']
         self.vs_static_linker = ['lib']
         self.gcc_static_linker = ['gcc-ar']
         self.clang_static_linker = ['llvm-ar']
@@ -768,14 +768,16 @@ class Environment:
                 linkers = [self.vs_static_linker]
             elif isinstance(compiler, compilers.GnuCompiler):
                 # Use gcc-ar if available; needed for LTO
-                linkers = [self.gcc_static_linker, self.default_static_linker]
+                linkers = [self.gcc_static_linker] + self.default_static_linker
             elif isinstance(compiler, compilers.ClangCompiler):
                 # Use llvm-ar if available; needed for LTO
-                linkers = [self.clang_static_linker, self.default_static_linker]
+                linkers = [self.clang_static_linker] + self.default_static_linker
             else:
-                linkers = [self.default_static_linker]
+                linkers = self.default_static_linker
         popen_exceptions = {}
         for linker in linkers:
+            if isinstance(linker, str):
+                linker = [linker]
             if 'lib' in linker or 'lib.exe' in linker:
                 arg = '/?'
             else:

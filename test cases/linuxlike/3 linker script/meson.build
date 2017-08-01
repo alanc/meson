@@ -1,5 +1,9 @@
 project('linker script', 'c')
 
+if host_machine.system() == 'solaris'
+  add_project_link_arguments('-Wl,-z,gnu-version-script-compat', language: 'C')
+endif
+
 # Static map file
 mapfile = 'bob.map'
 vflag = '-Wl,--version-script,@0@/@1@'.format(meson.current_source_dir(), mapfile)

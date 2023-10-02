@@ -43,6 +43,10 @@ if method == 'combination'
     )
   endif
 
+  if not llvm_ct_dep.found() and not llvm_cm_dep.found()
+    error('MESON_SKIP_TEST required llvm modules not found.')
+  endif
+
   assert(llvm_ct_dep.found() and llvm_cm_dep.found(), 'config-tool and cmake both need to be found')
   cm_version_major = llvm_cm_dep.version().split('.')[0].to_int()
   cm_version_minor = llvm_cm_dep.version().split('.')[1].to_int()
